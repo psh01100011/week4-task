@@ -127,9 +127,6 @@ public class PostService {
         // PostContent를 조인해서 가져오지 않았으니 각 게시물에 맞는 content도 조회
         return posts.stream()
                 .map(post -> {
-                    PostContent postContent = postContentRepository.findById(post.getId())
-                            .orElseThrow(() -> new IllegalArgumentException("PostContent not found"));
-
                     User user = userRepository.findById(post.getUser().getId())
                             .orElseThrow(() -> new IllegalArgumentException("User not found"));
 
@@ -138,8 +135,8 @@ public class PostService {
                             user.getId(),
                             user.getNickname(),
                             post.getTitle(),
-                            postContent.getContent(),
-                            postContent.getImage(),
+                            null,
+                            null,
                             post.getCreatedAt(),
                             post.getUpdatedAt()
                     );

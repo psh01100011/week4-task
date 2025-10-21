@@ -68,6 +68,27 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
+    //유저 이메일 중복 체크 : 중복시 false
+    @PostMapping("/email")
+    public ResponseEntity<Boolean> checkEmail(@RequestBody UserDto userRequest) {
+        String email = userRequest.getEmail();
+        if(userService.checkEmail(email)){
+            return ResponseEntity.ok(true);
+        }
+        return ResponseEntity.ok(false);
+    }
+
+    //유저 이메일 중복 체크 중복시 false
+    @PostMapping("/nickname")
+    public ResponseEntity<Boolean> checkNickname(@RequestBody UserDto userRequest) {
+        // 중복이라면
+        String nickname = userRequest.getNickname();
+        if(userService.checkNickname(nickname)){
+            return ResponseEntity.ok(true);
+        }
+        return ResponseEntity.ok(false);
+    }
+
 
 
 

@@ -17,8 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class PostLikeService {
 
     private final PostLikeRepository postLikeRepository;
-    private final PostRepository postRepository;
-    private final UserRepository userRepository;
     private final EntityManager entityManager;
 
     //좋아요

@@ -84,7 +84,10 @@ public class UserService {
     public UserDto updateInfo(Long id, UserDto userRequest){
         User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("User not found"));
 
+        //중복 닉네임 검증 작업이 필요할 것으로 보임
         if (userRequest.getNickname() != null) user.changeNickname(userRequest.getNickname());
+
+
         if (userRequest.getProfileImage() != null) user.changeProfileImage(userRequest.getProfileImage());
         user.setUpdatedAt(LocalDateTime.now());
 
