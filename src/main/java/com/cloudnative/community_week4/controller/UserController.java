@@ -8,12 +8,16 @@ import com.cloudnative.community_week4.service.UserAuthService;
 import com.cloudnative.community_week4.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/v1/users")
 @RequiredArgsConstructor
@@ -27,6 +31,7 @@ public class UserController {
         2. 1번과 UserService 추가 구현 후 할 일
         - 내 글 조회, 내 댓글 조회, 내 좋아요 조회
      */
+
 
     private final UserService userService;
     private final UserAuthService userAuthService;
@@ -72,6 +77,7 @@ public class UserController {
     @PostMapping("/email")
     public ResponseEntity<Boolean> checkEmail(@RequestBody UserDto userRequest) {
         String email = userRequest.getEmail();
+        log.info(email);
         if(userService.checkEmail(email)){
             return ResponseEntity.ok(true);
         }

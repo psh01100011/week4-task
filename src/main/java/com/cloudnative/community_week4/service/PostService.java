@@ -47,7 +47,7 @@ public class PostService {
 
         return new PostDto(post.getId(),
                 user.getId(), null, post.getTitle(),
-                postContent.getContent(), postContent.getImage(),
+                postContent.getContent(), postContent.getImage(),0,0,0,
                 LocalDateTime.now(), LocalDateTime.now());
     }
 
@@ -55,19 +55,20 @@ public class PostService {
     public PostDto getPostDetail(Long id){
         Post post = postRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Post not found"));
 
-        post.addViewCount();
-
         //게시물 비활성화 상태
         if(post.getPostStatus() != PostStatus.ACTIVE){
             return new PostDto(id);
         }
+
         //활성화 상태면 게시물 정보 가져와서 전달
         PostContent postContent = postContentRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("PostContent not found"));
         User user = userRepository.findById(post.getUser().getId()).orElseThrow(() -> new IllegalArgumentException("User not found"));
 
+        post.addViewCount();
         return new PostDto(
                 post.getId(), user.getId(), user.getNickname(),
                 post.getTitle(), postContent.getContent(), postContent.getImage(),
+                post.getViewCount(),post.getCommentCount(),post.getLikeCount(),
                 post.getCreatedAt(), post.getUpdatedAt()
         );
     }
@@ -92,6 +93,7 @@ public class PostService {
         return new PostDto(post.getId(),
                 post.getUser().getId(),null, post.getTitle(),
                 postContent.getContent(), postContent.getImage(),
+                post.getViewCount(),post.getCommentCount(),post.getLikeCount(),
                 post.getCreatedAt(), post.getUpdatedAt());
     }
 
@@ -137,6 +139,7 @@ public class PostService {
                             post.getTitle(),
                             null,
                             null,
+                            post.getViewCount(),post.getCommentCount(),post.getLikeCount(),
                             post.getCreatedAt(),
                             post.getUpdatedAt()
                     );

@@ -29,7 +29,7 @@ public class PostLikeService {
         User user = entityManager.getReference(User.class, userId);
 
         postLikeRepository.save(new PostLike(post, user));
-        post.minusLikeCount();  // post 엔티티에 likeCount++ 메서드 만들어두면 깔끔
+        post.addLikeCount();
     }
 
     //좋아요 취소

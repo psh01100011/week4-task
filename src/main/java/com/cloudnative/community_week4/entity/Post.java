@@ -33,11 +33,11 @@ public class Post {
     private String title;
 
     @Column(nullable = false)
-    private int viewCount = 0;
+    private int viewCount;
     @Column(nullable = false)
-    private int commentCount = 0;
+    private int commentCount;
     @Column(nullable = false)
-    private int likeCount = 0;
+    private int likeCount;
 
     @Enumerated(EnumType.STRING)
     private PostStatus postStatus = PostStatus.ACTIVE;
