@@ -1,5 +1,6 @@
 package com.cloudnative.community_week4.service;
 
+import com.cloudnative.community_week4.entity.User;
 import com.cloudnative.community_week4.entity.UserAuth;
 import com.cloudnative.community_week4.repository.UserAuthRepository;
 import com.cloudnative.community_week4.repository.UserRepository;

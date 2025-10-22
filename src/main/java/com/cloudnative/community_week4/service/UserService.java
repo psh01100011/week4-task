@@ -72,7 +72,7 @@ public class UserService {
         UserAuth userAuth = userAuthRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Auth not found"));
 
         return new UserDto(
-                null,
+                user.getId(),
                 userAuth.getEmail(),
                 user.getNickname(),
                 user.getProfileImage(),

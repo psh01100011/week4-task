@@ -1,6 +1,8 @@
 package com.cloudnative.community_week4.controller;
 
 import com.cloudnative.community_week4.dto.AuthDto;
+import com.cloudnative.community_week4.dto.UserDto;
+import com.cloudnative.community_week4.entity.User;
 import com.cloudnative.community_week4.service.UserAuthService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -21,12 +23,12 @@ public class AuthController {
 
     private final UserAuthService userAuthService;
 
-    //로그인 후 세션 전달
+    //로그인 후 세션 생성, 프론트 검증용 id 반환
     @PostMapping
-    public ResponseEntity<String> login(@RequestBody AuthDto request, HttpSession session) {
+    public ResponseEntity<Long> login(@RequestBody AuthDto request, HttpSession session) {
         Long userId = userAuthService.login(request.getEmail(), request.getPassword());
         session.setAttribute("userId", userId);
-        return ResponseEntity.status(HttpStatus.CREATED).body("로그인 성공");
+        return ResponseEntity.status(HttpStatus.CREATED).body(userId);
     }
 
     //로그아웃 후 세션 삭제
