@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
+
 @Controller
 @RequestMapping("/api/v1/policy")
 @RequiredArgsConstructor
@@ -18,18 +20,15 @@ public class PolicyController {
 
     //이용약관
     @GetMapping("/terms")
-    public String termsPage(Model model) throws Exception {
-        String termsContent = policyService.getTermsContent();
-        //모델에 담아 넘기기
-        model.addAttribute("termsContent", termsContent);
-        return "terms";
+    public String termsPage(Model model) throws IOException {
+        model.addAttribute("termsSections", policyService.getTermsSections());
+        return "/terms";
     }
 
     //개인정보
     @GetMapping("/privacy")
     public String privacyPage(Model model) throws Exception {
-        String privacyContent = policyService.getPrivacyContent();
-        model.addAttribute("privacyContent", privacyContent);
-        return "privacy";
+        model.addAttribute("privacySections", policyService.getPrivacySections());
+        return "/privacy";
     }
 }

@@ -1,25 +1,33 @@
 package com.cloudnative.community_week4.service;
 
 
+import com.cloudnative.community_week4.dto.PolicySection;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
+import java.util.List;
 
 @Service
 public class PolicyService {
 
-    public String getTermsContent() throws IOException {
-        return readFileFromResource("policy/terms.txt");
+    private final ObjectMapper objectMapper = new ObjectMapper();
+
+    public List<PolicySection> getTermsSections() throws IOException {
+        ClassPathResource resource = new ClassPathResource("/policy/terms.json");
+        try (InputStream inputStream = resource.getInputStream()) {
+            return objectMapper.readValue(inputStream, new TypeReference<>() {});
+        }
     }
 
-    public String getPrivacyContent() throws IOException {
-        return readFileFromResource("policy/privacy.txt");
-    }
-
-    private String readFileFromResource(String path) throws IOException {
-        ClassPathResource resource = new ClassPathResource(path);
-        return Files.readString(resource.getFile().toPath());
+    public List<PolicySection> getPrivacySections() throws IOException {
+        ClassPathResource resource = new ClassPathResource("/policy/privacy.json");
+        try (InputStream inputStream = resource.getInputStream()) {
+            return objectMapper.readValue(inputStream, new TypeReference<>() {});
+        }
     }
 }

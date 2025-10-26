@@ -7,8 +7,14 @@
 </head>
 <body>
 <h1>이용약관</h1>
-<div class="policy-container" th:text="${termsContent}">
-    <!-- 약관 내용이 여기에 삽입됨 -->
+<div class="policy-container">
+    <div th:each="section : ${termsSections}">
+        <h2>
+            <span th:text="${section.article}"></span>
+            <span th:text="${section.title}"></span>
+        </h2>
+        <p th:utext="${#strings.replace(section.content, '\n', '<br/>')}"></p>
+    </div>
 </div>
 </body>
 </html>
