@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>개인정보처리방침</title>
+    <link rel="stylesheet" th:href="@{/policy.css}">
+</head>
+<body>
+<h1>개인정보처리방침</h1>
+<div class="policy-container" th:text="${privacyContent}">
+    <!-- 개인정보 처리방침 내용이 여기에 삽입됨 -->
+</div>
+</body>
+</html>

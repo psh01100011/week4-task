@@ -1,0 +1,77 @@
+/* 기본 레이아웃 */
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+.policy-container {
+  max-width: 800px;
+  margin: 60px auto;
+  background-color: #fff;
+  padding: 40px 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  line-height: 1.8;
+  font-size: 15px;
+  white-space: pre-wrap; /* 줄바꿈 유지 */
+}
+
+/* 제목 스타일 */
+h1 {
+  text-align: center;
+  font-size: 28px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+/* 본문 텍스트 */
+.policy-container p {
+  margin-bottom: 16px;
+}
+
+.policy-container strong {
+  font-weight: 600;
+}
+
+.policy-container h2 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  font-size: 20px;
+  color: #111;
+}
+
+/* 스크롤이 길어질 경우 대비 */
+.policy-container {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+/* 스크롤바 커스터마이징 (선택사항) */
+.policy-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.policy-container::-webkit-scrollbar-thumb {
+  background-color: #bbb;
+  border-radius: 4px;
+}
+
+.policy-container::-webkit-scrollbar-thumb:hover {
+  background-color: #888;
+}
+
+/* 반응형 */
+@media (max-width: 600px) {
+  .policy-container {
+    padding: 20px 15px;
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+}
